@@ -15,7 +15,7 @@ public class Ftest extends JFrame{
 		// TODO 自动生成的构造函数存根
 		Container c = getContentPane();
 		setTitle("all");
-		setSize(200, 300);
+		setSize(300, 300);
 		c.setLayout(new BorderLayout());
 		JPanel jp1 = new JPanel();
 		JPanel jp2 = new JPanel();
@@ -25,10 +25,12 @@ public class Ftest extends JFrame{
 		jp1.add(js);
 		JButton jb1 = new JButton("写入文件");
 		JButton jb2 = new JButton("读取文件");
+		JButton jb3 = new JButton("打开文件");
 		c.add(jp2,BorderLayout.SOUTH);
 		jp2.add(jb1);
 		jp2.add(jb2);
-		File file = new File("word.txt");
+		jp2.add(jb3);
+		File file = new File("D:\\workspace\\item\\word.txt");
 		if (!file.exists()) {
 			try {
 				file.createNewFile();
@@ -63,6 +65,19 @@ public class Ftest extends JFrame{
 					int len = reader.read(byt);
 					jt.setText(new String(byt, 0, len));
 					reader.close();
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+			}
+		});
+		jb3.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+				try {
+					String file = "rundll32 url.dll FileProtocolHandler file://D:\\workspace\\item\\word.txt";
+					Runtime.getRuntime().exec(file);
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
